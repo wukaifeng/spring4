@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+   		https://www.springframework.org/schema/context/spring-context.xsd">
+<!-- 配置bean
+	class:bean的全类名，通过反射的方式在ioc容器中创建bean,所以bean中必须有无参的构造器
+	id:bean的名字，必须唯一
+		1，若没有指定，spring自动将全类名作为Bean的名字
+		2. id可以指定多个名字，直接用逗号，分号或空格分割(错误的)
+ -->
+<bean id="helloWorld" class="com.banksteel.SpringHelloWorld">
+	<property name="name" value="spring-01"></property>
+</bean>
+<bean id="helloWorld2" class="com.banksteel.SpringHelloWorld">
+	<property name="name" value="spring-01"></property>
+</bean>
+<bean class="com.banksteel.SpringHelloWorld">
+	<property name="name" value="spring-01"></property>
+</bean>
+
+<!-- 通过构造器注入属性
+1，也可以指定类型
+2.类型和和index可以混合指定
+ -->
+<bean id="car" class="com.banksteel.Car">
+	<constructor-arg value="xxxx1"></constructor-arg>
+	<constructor-arg value="xxxx2"></constructor-arg>
+	<constructor-arg value="22"></constructor-arg>
+</bean>
+<bean id="car1" class="com.banksteel.Car">
+	<constructor-arg value="xxxx1" index="1"></constructor-arg>
+	<constructor-arg value="xxxx2" index="0"></constructor-arg>
+	<constructor-arg value="22" index="2"></constructor-arg>
+</bean>
+<bean id="car3" class="com.banksteel.Car">
+	<constructor-arg value="xxxx1" index="1"></constructor-arg>
+	<constructor-arg  index="0">
+		<value><![CDATA[<<<<>>>>fdafafa]]></value>
+	</constructor-arg>
+	<constructor-arg value="22" index="2"></constructor-arg>
+</bean>
+
+<!-- 可以使用property的ref属性建立bean直接的引用关系 -->
+<bean id="person" class="com.banksteel.Person">
+	<property name="name" value="zhangsan"></property>
+	<property name="age" value="12"></property>
+	<!-- <property name="car" ref="car1"></property> -->
+	<!-- <property name="car">
+		<ref bean="car1"/>
+	</property> -->
+	
+	<!-- 内部bean.只能在内部使用， 不能被外部引用  -->
+	<property name="car">
+		<bean class="com.banksteel.Car">
+			<constructor-arg value="xxxx1" index="1"></constructor-arg>
+			<constructor-arg value="xxxx2" index="0"></constructor-arg>
+			<constructor-arg value="22" index="2"></constructor-arg>
+		</bean>
+	</property>
+</bean>
+<bean id="person2" class="com.banksteel.Person">
+	<property name="name" value="zhangsan"></property>
+	<property name="age" value="12"></property>
+	<property name="car" >
+		<null></null>
+	</property>
+</bean>
+<bean id="person3" class="com.banksteel.Person">
+	<property name="name" value="zhangsan"></property>
+	<property name="age" value="12"></property>
+	<property name="car" ref="car"></property>
+	<property name="car.brand" value="xxxxx111"></property>
+</bean>
+
+<bean id="person6" class="com.banksteel.collection.Person">
+	<property name="name" value="zhangsan"></property>
+	<property name="age" value="12"></property>
+	<property name="cars" >
+		<list>
+			<ref bean="car1"/>
+		</list>
+	</property>
+</bean>
+
+<bean id="dataSource" class="com.banksteel.collection.DataSource">
+	<property name="properties">
+		<props>
+			<prop key="user">user</prop>
+			<prop key="password">123</prop>
+			<prop key="jdbcUrl">//xxxx</prop>
+			<prop key="jdbcDriver">com.mysql.jdbc.Driver</prop>
+		</props>
+	</property>
+</bean>
+
+</beans>

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import com.banksteel.service.CompactDisc;
 
 @Component
+// @Component("compactDiscImpl")
 public class CompactDiscImpl implements CompactDisc {
 	private String title = "compactdisc titel.....";
 	
