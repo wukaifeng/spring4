@@ -1,4 +1,4 @@
-package com.banksteel.cycle;
+package com.banksteel.bean;
 
 public class BeanCycle {
 

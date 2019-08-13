@@ -1,4 +1,4 @@
-package com.banksteel;
+package com.banksteel.bean;
 
 public class Car {
 	private String brand;

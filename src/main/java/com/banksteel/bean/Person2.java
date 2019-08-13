@@ -1,6 +1,6 @@
-package com.banksteel;
+package com.banksteel.bean;
 
-public class Person {
+public class Person2 {
 	private String name;
 	private int age;
 	private Car car;

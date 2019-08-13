@@ -1,13 +1,9 @@
-package com.banksteel.collection;
-
-import java.util.List;
-
-import com.banksteel.bean.Car;
+package com.banksteel.bean;
 
 public class Person {
 	private String name;
 	private int age;
-	private List<Car> cars;
+	private Car car;
 	public String getName() {
 		return name;
 	}
@@ -20,17 +16,17 @@ public class Person {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public List<Car> getCars() {
-		return cars;
+	public Car getCar() {
+		return car;
 	}
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
+	public void setCar(Car car) {
+		this.car = car;
 	}
-	
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", age=" + age + ", cars=" + cars + "]";
+		return "Person [name=" + name + ", age=" + age + ", car=" + car + "]";
 	}
+	
 	
 
 }

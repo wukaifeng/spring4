@@ -4,6 +4,9 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.banksteel.bean.Car;
+import com.banksteel.bean.Person;
+
 public class MainTest {
 
 	public static void main(String[] args) {
