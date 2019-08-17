@@ -15,11 +15,27 @@
     	https://www.springframework.org/schema/aop/spring-aop.xsd">
     <!-- 默认是false 使用jdk代理，true为cglib 代理 -->
     <aop:config proxy-target-class="true"></aop:config>	
+    <context:component-scan base-package="com.banksteel.aop"/>
+    <aop:aspectj-autoproxy/>
    	<bean id="me" class="com.banksteel.aop.service.impl.Me"/>
    	<bean id="myBeforeAdvice" class="com.banksteel.aop.advice.MyAdvice"/>
+   	<bean id="myAspectAdvice" class="com.banksteel.aop.advice.MyAspectAdvice"/>
    	<!-- 配置切面 -->
-   	<aop:config>
+   <!-- 	<aop:config>
    		<aop:pointcut expression="execution(* com.banksteel.aop.service.impl.Me.*(..))" id="myPoint"/>
    		<aop:advisor advice-ref="myBeforeAdvice" pointcut-ref="myPoint"/>
-   	</aop:config>
+   	</aop:config> -->
+   	<!-- aspectJ 配置切面 -->
+<!--    	<aop:config>
+   		<aop:pointcut expression="execution(* com.banksteel.aop.service.impl.Me.*(..))" id="myAspectPoint"/>
+   		<aop:aspect ref="myAspectAdvice">
+   			<aop:before method="before" pointcut-ref="myAspectPoint"/>
+   			<aop:after method="after" pointcut-ref="myAspectPoint"/>
+   			<aop:after-returning method="after" pointcut-ref="myAspectPoint"/>
+   			<aop:around method="around" pointcut-ref="myAspectPoint" />
+   			<aop:after-throwing method="throwing" pointcut-ref="myAspectPoint" throwing="e"/>
+   		</aop:aspect>
+   	</aop:config> -->
+   	
+   	
 </beans>

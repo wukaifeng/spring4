@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.banksteel.aop.service.Sleepable;
-import com.banksteel.aop.service.impl.Me;
 
 import junit.framework.TestCase;
 
@@ -20,6 +19,10 @@ public class AopTest extends TestCase {
 	
 	@Test
 	public void test1() {
+		me.test1("zhangsan", 12);
+	}
+	@Test
+	public void test2() {
 		me.sleep();
 	}
 }

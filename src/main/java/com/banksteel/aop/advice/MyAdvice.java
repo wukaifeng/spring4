@@ -12,14 +12,17 @@ import org.springframework.aop.ThrowsAdvice;
 public class MyAdvice implements ThrowsAdvice, MethodBeforeAdvice, AfterReturningAdvice, AfterAdvice, MethodInterceptor {
 
 	@Override
-	public void before(Method arg0, Object[] arg1, Object arg2) throws Throwable {
+	public void before(Method method, Object[] arg1, Object obj) throws Throwable {
+		System.out.println("切点方法名method:" + method.getName());
+		System.out.println("切点方法参数:" + arg1);
+		System.out.println("切点对象:" + obj);
 		System.out.println("执行前置通知！");
 		
 	}
 
 	@Override
 	public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
-		System.out.println("执行后置通知！");
+		System.out.println("执行后置通知！" + returnValue);
 	}
 
 	@Override
