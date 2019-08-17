@@ -13,36 +13,13 @@
    		https://www.springframework.org/schema/beans/spring-beans.xsd
     	http://www.springframework.org/schema/aop 
     	https://www.springframework.org/schema/aop/spring-aop.xsd">
-   	<context:component-scan base-package="com.banksteel.service.impl" />
-   	<context:property-placeholder/>
-   	
+    <!-- 默认是false 使用jdk代理，true为cglib 代理 -->
+    <aop:config proxy-target-class="true"></aop:config>	
    	<bean id="me" class="com.banksteel.aop.service.impl.Me"/>
-   	<bean id="myBeforeAdvice" class="com.banksteel.aop.advice.MyBeforeAdvice"/>
+   	<bean id="myBeforeAdvice" class="com.banksteel.aop.advice.MyAdvice"/>
    	<!-- 配置切面 -->
    	<aop:config>
    		<aop:pointcut expression="execution(* com.banksteel.aop.service.impl.Me.*(..))" id="myPoint"/>
    		<aop:advisor advice-ref="myBeforeAdvice" pointcut-ref="myPoint"/>
    	</aop:config>
-   	<!-- 在xml 中引入java配置类，只需要写一个bean即可，如下 -->
-   	<!-- <bean class="com.banksteel.xxxConfig"></bean> -->
-   	<!-- c: 命名空间引用 
-   		c:属性名称-ref 应用其他bean
-   		c:属性名 字段属性
-   		c:_0-ref 参数索引，一个参数使用_-ref 0可以省略
-   		c:_0 普通属性
-   		c命名空间装配集合是不适用
-   	-->
-	<bean id="carRef" class="com.banksteel.Car" c:brand="123" c:corp="11" c:price="12" />
-	<bean id="carRef2" class="com.banksteel.Car" c:_0="123_0" c:_1="11_1" c:_2="12" />
-
-<!-- p: 属性命名空间引用
-
- -->
-<bean id="personRef" class="com.banksteel.Person" p:name="zhangsan"  p:age="12">
-	<property name="car" >
-		<null></null>
-	</property>
-</bean>
-<bean id="personRef2" class="com.banksteel.Person" p:name="zhangsan"  p:age="12" p:car-ref="carRef2" />
-
 </beans>
